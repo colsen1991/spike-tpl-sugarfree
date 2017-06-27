@@ -1,36 +1,21 @@
-const { UglifyJsPlugin } = require('webpack').optimize;
-const spikeCssStandards = require('spike-css-standards');
-const reshapeStandard = require('reshape-standard');
-const babelPreset = require('babel-preset-env');
-const noop = require('noop-webpack-plugin');
-const marked = require('marked');
+const htmlStandards = require('reshape-standard')
+const cssStandards = require('spike-css-standards')
+const jsStandards = require('spike-js-standards')
 
-const env = process.env.NODE_ENV;
-const isDev = env === 'development';
-const isProduction = env === 'production';
-
-const locals = { md: marked };
+const isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  devtool: isDev ? 'source-map' : false,
-  ignore: [
-    '**/_*',
-    '**/.*',
-    'readme.md'
-  ],
-  postcss: spikeCssStandards({
+  devtool: isProduction ? false : 'source-map',
+  ignore: [ '**/_*', '**/.*', 'readme.md', 'yarn.lock', 'package-lock.json', '**/.idea/**', 'LICENSE' ],
+  reshape: htmlStandards({
     parser: false,
+    locals: {},
     minify: isProduction
   }),
-  babel: {
-    presets: [ [ babelPreset, { modules: false } ] ]
-  },
-  reshape: reshapeStandard({
-    minify: isProduction,
+  postcss: cssStandards({
     parser: false,
-    locals
+    minify: isProduction,
+    warnForDuplicates: !isProduction
   }),
-  plugins: [
-    isProduction ? new UglifyJsPlugin() : noop()
-  ]
-};
+  babel: jsStandards({ modules: false })
+}
