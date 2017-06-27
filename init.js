@@ -10,7 +10,3 @@ exports.configure = [
     message: 'What is your github username?'
   }
 ];
-
-exports.after = (util, config) => {
-  if (!config.production) util.target.remove('app.production.js')
-};

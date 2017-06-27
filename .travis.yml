@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-  - 6
+  - 8
 before_script:
-  - git config --global user.email "dev@carrotcreative.com"
-  - git config --global user.name "Carrot Creative"
+  - git config --global user.email "colsen1991@gmail.com.com"
+  - git config --global user.name "colsen1991"
