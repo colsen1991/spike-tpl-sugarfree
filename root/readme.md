@@ -8,7 +8,7 @@
 - `npm i spike -g`
 - clone this repo down and `cd` into the folder
 - run `npm install`
-- run `spike watch` or `spike compile`
+- run `npm dev` or `npm build`
 
 ## Testing
 Tests are located in `test/**` and are powered by [ava](https://github.com/sindresorhus/ava)

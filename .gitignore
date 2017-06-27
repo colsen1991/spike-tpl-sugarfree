@@ -2,3 +2,4 @@ node_modules
 tmp
 example
 *.log
+.idea
